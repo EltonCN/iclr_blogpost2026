@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: "Beyond the Rerun: Why Reproducibility is Failing Science"
-description: "Is reproducibility enough? We discuss the current reproducibility crisis and the limitations that focusing solely on this aspect of scientific project quality imposes on science. We propose a broader approach to the problem of scientific debt and outline practical actions researchers can take in their research. We also draw attention to the need for community action on the issue."
+description: Is reproducibility enough? We discuss the current reproducibility crisis and the limitations that focusing solely on this aspect of scientific project quality imposes on science. We propose a broader approach to the problem of scientific debt and outline practical actions researchers can take in their research. We also draw attention to the need for community action on the issue.
 date: 2026-04-27
 future: true
 htmlwidgets: true
@@ -60,6 +60,25 @@ These are some recommendations that you, as a researcher, can use. But even thou
 	
 	Ideally, these codes should be decoupled, allowing the method to be reused in future research. The method code should also, whenever possible, be written using well-known, widely used frameworks, further increasing compatibility. Think about how easy it is to use a neural network layer that is already written in a ready-to-use PyTorch class. The experiment code should contain not only the code to run the experiment, but also its configurations and the code responsible for processing datasets. Furthermore, it should include clear execution entry points, avoiding the need to run different scripts in different folders to perform a single task, such as training or evaluating a model.
 	
+	```mermaid
+	%%{init: {"flowchart": {"markdownAutoWrap":"true", "wrappingWidth": "10"}} }%%
+	flowchart LR
+
+		subgraph experiment_sub[My Experiment]
+			experiment["Scripts that perform\nexperiments using your\nnew method"]
+
+		end
+
+		subgraph method_sub[My method]
+			method["Elements that are part of\nyour new proposed\nmethod"]
+
+		end
+
+		experiment_sub -->|Import and use with well-\nknown, widely used\ninterfaces| method_sub
+
+
+	```
+
 2. **Code standards**
 
 	A consistent coding style throughout the project is important for ease of understanding. Writing variable, function, and class names in a way that clearly explains what they do is a good starting point.
