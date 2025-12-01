@@ -59,22 +59,6 @@ These are some recommendations that you, as a researcher, can use. But even thou
 	We need software with designs considering the division of concerns. Currently, it's very common to see programs that mix the code of the proposed method (method code) with the code of the experiment that validates the method and generates metrics and results (experiment code). 
 	
 	Ideally, these codes should be decoupled, allowing the method to be reused in future research. The method code should also, whenever possible, be written using well-known, widely used frameworks, further increasing compatibility. Think about how easy it is to use a neural network layer that is already written in a ready-to-use PyTorch class. The experiment code should contain not only the code to run the experiment, but also its configurations and the code responsible for processing datasets. Furthermore, it should include clear execution entry points, avoiding the need to run different scripts in different folders to perform a single task, such as training or evaluating a model.
-	
-	```mermaid
-	%%{init: { "flowchartConfig": { "width":50% } }}%%
-	flowchart LR
-
-		subgraph experiment_sub[My Experiment]
-			experiment["Scripts that perform\nexperiments using your\nnew method"]
-		end
-
-		subgraph method_sub[My method]
-			method["Elements that are part of\nyour new proposed\nmethod"]
-		end
-
-		experiment_sub -->|Import and use with well-\nknown, widely used\ninterfaces| method_sub
-
-	```
 
 2. **Code standards**
 
