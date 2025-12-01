@@ -32,11 +32,11 @@ Today, there is a "reproducibility crisis" in science <d-cite key="baker1500Scie
 
 There are initiatives to improve the issue of reproducibility. The "AI4Europe Reproducibility Initiative" <d-cite key="AI4EuropeReproducibilityInitiative"></d-cite> focuses on three different barriers to reproducibility: technical, the documentation and preservation of software and data; cultural, the encouragement and valuation of reproducibility over results and novelty alone; and systemic, the lack of standards and guidelines for reproducibility. Conferences also address the issue, with ICLR incentivizing a reproducibility statement <d-cite key="ICLR2026Author"></d-cite> and NeurIPS <d-cite key="NeurIPS2025Call"></d-cite> including a mandatory reproducibility question in its checklist. There are even awards for studies that best address reproducibility <d-cite key="GENEAWorkshop2025"></d-cite>. NeurIPS also suggests using the Papers With Code guidelines <d-cite key="PaperswithcodeReleasingresearchcode2025"></d-cite>, which include requirements such as a requirements list, Docker images uploaded to Docker Hub, separate code for training and evaluation, pre-trained models, and instructions for reproducing the results. As outlined in this guideline, not only the code but also sharing other artifacts are essential, as one can say, "Where re-running is successful, the published artifacts allow others to build on earlier work" <d-cite key="plesserReproducibilityVsReplicability2018"></d-cite>.
 
-However, we argue that reproducibility alone is not enough for science. Science is about questioning and proposing new perspectives and approaches, about advancing the SotA. It's not enough to simply be able to re-execute and understand a project. It needs to be possible to use it and build upon it, because that's how science is built. Often, "reproducible" code is a black box that runs in a Docker container, spits out a number, and dies. If I can't dissect the model to understand _why_ it worked, that's performance validation, not knowledge building. And the current view, focused solely on the reproducibility crisis, fails to see this resulting gap. When we ask our students to replicate an experiment published by other researchers, we want them to understand it and be able to propose changes and new approaches based on it.
+However, we argue that reproducibility alone is not enough for science. Science is about questioning and proposing new perspectives and approaches, about advancing the SotA. It's not enough to simply be able to re-execute and understand a project. It needs to be possible to use it and build upon it, because that's how science is built. Often, "reproducible" code is a black box that runs in a Docker container, spits out a number, and dies. If I can't dissect the model to understand _why_ it worked, that is performance validation, not knowledge building. And the current view, focused solely on the reproducibility crisis, fails to see this resulting gap. When we ask our students to replicate an experiment published by other researchers, we want them to understand it and be able to propose changes and new approaches based on it.
 
-We have a proliferation of "single-use codes," and that is not sustainable. Symptoms of the trap of prioritizing productivity over quality and scientific advancement include shortcuts to publishing quickly that, paradoxically, ultimately increase the overall time cost of science. Ultimately, we are creating a **"scientific debt"** that makes research more challenging. We have separated the code for a new method here from the code of the experiment performed to validate it, since the former should be the focus of this problem. Methods should be reusable and extensible, as significant advances in science have not been built upon single-use methods.
+We have a proliferation of "single-use codes," and that is not sustainable. Symptoms of the trap of prioritizing productivity over quality and scientific advancement include shortcuts to publishing quickly that, paradoxically, ultimately increase the overall time cost of science. We are creating a **"scientific debt"** that makes research more challenging. We have separated the code for a new method here from the code of the experiment performed to validate it, since the former should be the focus of this problem. Methods should be reusable and extensible, as significant advances in science have not been built upon single-use methods.
 
-## Pillars for Scientific Computing Science
+## Pillars for Scientific Computer Science
 
 Building on the "scientific debt" presented, we propose to view the problem from three pillars, **Reproducibility**, **Legibility**, and **Composability**:
 
@@ -61,21 +61,18 @@ These are some recommendations that you, as a researcher, can use. But even thou
 	Ideally, these codes should be decoupled, allowing the method to be reused in future research. The method code should also, whenever possible, be written using well-known, widely used frameworks, further increasing compatibility. Think about how easy it is to use a neural network layer that is already written in a ready-to-use PyTorch class. The experiment code should contain not only the code to run the experiment, but also its configurations and the code responsible for processing datasets. Furthermore, it should include clear execution entry points, avoiding the need to run different scripts in different folders to perform a single task, such as training or evaluating a model.
 	
 	```mermaid
-	%%{init: {"flowchart": {"markdownAutoWrap":"true", "wrappingWidth": "10"}} }%%
+	%%{init: { "flowchart": { "width":100% } }}%%
 	flowchart LR
 
 		subgraph experiment_sub[My Experiment]
 			experiment["Scripts that perform\nexperiments using your\nnew method"]
-
 		end
 
 		subgraph method_sub[My method]
 			method["Elements that are part of\nyour new proposed\nmethod"]
-
 		end
 
 		experiment_sub -->|Import and use with well-\nknown, widely used\ninterfaces| method_sub
-
 
 	```
 
@@ -85,7 +82,7 @@ These are some recommendations that you, as a researcher, can use. But even thou
 
 	Some practices make code significantly easier to understand—for example, avoiding very long functions or files, keeping imports at the top of each file, and reducing the use of large configuration dictionaries passed through the code.
 	
-	There are tools, like AutoPEP8 <d-cite key="Autopep8ToolThat"></d-cite><d-cite key="Autopep8VisualStudio"></d-cite> and SonarLint <d-cite key="SonarQubeIDEVisual"></d-cite>, which can help maintain a consistent, appropriate style.
+	There are tools, like AutoPEP8 <d-cite key="Autopep8ToolThat"></d-cite><d-cite key="Autopep8VisualStudio"></d-cite>, that automatically formats code using the PEP 8 (official "Style Guide for Python Code") guidelines <d-cite key="guidovanrossumPEP8Style"></d-cite>, and SonarLint <d-cite key="SonarQubeIDEVisual"></d-cite>, which can help maintain a consistent, appropriate style.
 
 3. **Documentation**
    
@@ -192,5 +189,5 @@ gantt
 Many of the recommendations mentioned resemble software engineering processes. This is because, let's not forget, scientific research software is still... software. Ensuring its quality also involves elements similar to those in any other software.
 
 
-But even given the limits of reproducibility, it's pointless to raise our quality standards for computer science research if we can't address this scientific debt crisis. Cultural barriers, where a lack of incentives and increasing pressure on results and publications are a significant reason why we can't solve these problems <d-cite key="AI4EuropeReproducibilityInitiative"></d-cite>. This is where major conferences, such as the ICLR, journals, and funding agencies can step in by highlighting the importance of a sustainable scientific ecosystem that enables efficient future research and by explicitly demanding actions to achieve this goal.
+But even given the limits of reproducibility, it's pointless to raise our quality standards for computer science research if we can't address this scientific debt crisis. Cultural barriers, where a lack of incentives and increasing pressure on results and publications are significant reasons why we can't solve these problems <d-cite key="AI4EuropeReproducibilityInitiative"></d-cite>. This is where major conferences, such as the ICLR, journals, and funding agencies can step in by highlighting the importance of a sustainable scientific ecosystem that enables efficient future research and by explicitly demanding actions to achieve this goal.
 
